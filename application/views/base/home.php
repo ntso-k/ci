@@ -12,7 +12,7 @@
 
 	<link href='<?= base_url("assets")?>/bootstrap/css/bootstrap.css' rel="stylesheet" />
 	<link href='<?= base_url("assets")?>/bootstrap/css/bootstrap-theme.css' rel="stylesheet" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src='<?= base_url("assets")?>/bootstrap/js/bootstrap.js'></script>
 
 	<style>
