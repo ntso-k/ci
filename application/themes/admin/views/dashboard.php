@@ -52,6 +52,7 @@
 
 	<div class="starter-template">
 		<h1>Admin Dashboard</h1>
+		<a href="#" class="btn btn-primary btn-lg">Add New User</a>
 		<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
 	</div>
 
