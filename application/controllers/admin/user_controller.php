@@ -20,7 +20,7 @@ class User_Controller extends Admin_Controller {
 				$this->newUser($params);
 				break;
 			default:
-				$this->default_method();
+				$this->$method($params);
 		}
 	}
 }
