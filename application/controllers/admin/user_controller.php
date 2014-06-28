@@ -4,12 +4,25 @@ class User_Controller extends Admin_Controller {
 
 	public function index()
 	{
-		$this->load->view('dashboard');
+		$this->load->model('user');
+		$data['users'] = $this->user->get_last_ten();
+		$this->load->view('user_list', $data);
 	}
 
 	public function newUser()
 	{
-		echo 'New User!';
+		$this->load->view('user_new');
+	}
+
+	public function save()
+	{
+		$this->load->model('user');
+		$this->user->name = $_POST['name'];
+		$this->user->password = $_POST['password'];
+		$this->user->email = $_POST['email'];
+		$this->user->insert();
+
+		header("Location: ".base_url('/admin/user'));
 	}
 
 	public function _remap($method, $params = array())
