@@ -6,7 +6,7 @@ class Home_Controller extends Front_Controller {
 		parent::__construct();
 	}
 
-	public function index()
+	public function indexAction()
 	{
 		$this->load->view('home');
 	}

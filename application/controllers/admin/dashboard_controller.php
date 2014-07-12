@@ -2,7 +2,7 @@
 
 class Dashboard_Controller extends Admin_Controller {
 
-	public function index()
+	public function indexAction()
 	{
 		$this->load->view('dashboard');
 	}

@@ -2,6 +2,7 @@
 
 class MY_Router extends CI_Router {
 	const CONTROLLER_FILE_SUFFIX = '_controller';
+	const METHOD_NAME_SUFFIX = 'Action';
 
 	public function __construct()
 	{
@@ -106,6 +107,16 @@ class MY_Router extends CI_Router {
 	function set_class($class)
 	{
 		$this->class = str_replace(array('/', '.'), '', $class.self::CONTROLLER_FILE_SUFFIX);
+	}
+
+	function fetch_method()
+	{
+		if ($this->method == $this->fetch_class())
+		{
+			return 'index' . self::METHOD_NAME_SUFFIX;
+		}
+
+		return $this->method . self::METHOD_NAME_SUFFIX;
 	}
 
 }

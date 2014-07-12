@@ -1,21 +1,42 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class User_Controller extends Admin_Controller {
+	public function __construct()
+	{
+		parent::__construct();
+		
+		$this->load->helper(array('form', 'url'));
+	}
 
-	public function index()
+	public function indexAction()
 	{
 		$this->load->model('user');
 		$data['users'] = $this->user->get_last_ten();
 		$this->load->view('user_list', $data);
 	}
 
-	public function newUser()
+	public function newAction()
 	{
-		$this->load->view('user_new');
+		if($this->input->post()){
+			$this->saveUser();
+		}else{
+			$this->load->view('user_new');
+		}
 	}
 
-	public function save()
+	private function saveUser()
 	{
+
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('name', 'name', 'required');
+		$this->form_validation->set_rules('password', 'password', 'required');
+		$this->form_validation->set_rules('email', 'email');
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('user_new');
+			return;
+		}
+		
 		$this->load->model('user');
 		$this->user->name = $_POST['name'];
 		$this->user->password = $_POST['password'];
