@@ -1,7 +1,7 @@
 <?php
 
 class MY_Loader extends CI_Loader {
-	const VIEW_FILE_EXT = '.tpl.php';
+	const VIEW_FILE_EXT = '.phtml';
 
 	public function __construct()
 	{
