@@ -10,6 +10,7 @@ class Base_Controller extends CI_Controller
 	{
 		parent::__construct();
 
+		$this->load->library(array('session', 'Auth'));
 		//load common helper
 		$this->load->helper(array('url', 'file', 'string', 'html', 'language'));
 	}
@@ -35,5 +36,12 @@ class Admin_Controller extends Base_Controller
 
 		//load the theme package
 		$this->load->add_package_path(APPPATH.'themes/admin/');
+
+		//check is logged in
+		if('admin/login' != $this->uri->uri_string() && !$this->auth->is_logged_in())
+		{
+			redirect(base_url('/admin/login'));
+			die();
+		}
 	}
 }

@@ -6,11 +6,11 @@ class User_Controller extends Admin_Controller {
 		parent::__construct();
 		
 		$this->load->helper(array('form', 'url'));
+		$this->load->model('user');
 	}
 
 	public function indexAction()
 	{
-		$this->load->model('user');
 		$data['users'] = $this->user->get_last_ten();
 		$this->load->view('user_list', $data);
 	}
@@ -28,7 +28,7 @@ class User_Controller extends Admin_Controller {
 	{
 
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('name', 'name', 'required');
+		$this->form_validation->set_rules('username', 'username', 'required');
 		$this->form_validation->set_rules('password', 'password', 'required');
 		$this->form_validation->set_rules('email', 'email');
 		if ($this->form_validation->run() == FALSE)
@@ -36,9 +36,8 @@ class User_Controller extends Admin_Controller {
 			$this->load->view('user_new');
 			return;
 		}
-		
-		$this->load->model('user');
-		$this->user->name = $_POST['name'];
+
+		$this->user->username = $_POST['username'];
 		$this->user->password = $_POST['password'];
 		$this->user->email = $_POST['email'];
 		$this->user->insert();
