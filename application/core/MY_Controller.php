@@ -38,9 +38,9 @@ class Admin_Controller extends Base_Controller
 		$this->load->add_package_path(APPPATH.'themes/admin/base/');
 
 		//check is logged in
-		if('admin/login' != $this->uri->uri_string() && !$this->auth->is_logged_in())
+		if('admin/login' != $this->uri->uri_string() && 'admin/logout' != $this->uri->uri_string() && !$this->auth->is_logged_in())
 		{
-			redirect(base_url('/admin/login'));
+			redirect(base_url('/admin/login?redirect='.urlencode($_SERVER['REQUEST_URI'])));
 			die();
 		}
 	}

@@ -9,24 +9,24 @@ class LoginController extends Admin_Controller {
 
 	public function indexAction()
 	{
+		$redirect = $this->input->get_post('redirect', TRUE);
+		if(empty($redirect))
+		{
+			$redirect = '/admin';
+		}
 		if($this->auth->is_logged_in())
 		{
-			redirect(base_url('/admin'));
+			redirect(base_url($redirect));
 		}
 
 		if($this->input->post())
 		{
 			$username	= $this->input->post('username');
 			$password	= $this->input->post('password');
-			$redirect	= $this->input->post('redirect');
 			$login = $this->auth->login($username, $password);
 			if($login)
 			{
-				if(empty($redirect))
-				{
-					$redirect = base_url('/admin');
-				}
-				redirect($redirect);
+				redirect(base_url($redirect));
 			}
 			else
 			{
