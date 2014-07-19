@@ -24,7 +24,7 @@ class Front_Controller extends Base_Controller
 		parent::__construct();
 
 		//load the theme package
-		$this->load->add_package_path(APPPATH.'themes/base/');
+		$this->load->add_package_path(APPPATH.'themes/front/base/');
 	}
 }
 
@@ -35,7 +35,7 @@ class Admin_Controller extends Base_Controller
 		parent::__construct();
 
 		//load the theme package
-		$this->load->add_package_path(APPPATH.'themes/admin/');
+		$this->load->add_package_path(APPPATH.'themes/admin/base/');
 
 		//check is logged in
 		if('admin/login' != $this->uri->uri_string() && !$this->auth->is_logged_in())

@@ -1,0 +1,20 @@
+<?php require_once('header.phtml'); ?>
+
+<div class="container">
+
+	<div class="">
+		<table class="table">
+			<tr><th>ID</th><th>UserName</th><th>Email</th></tr>
+			<?php foreach($users as $user){ ?>
+			<tr>
+				<td><?=$user->id ?></td>
+				<td><?=$user->username ?></td>
+				<td><?=$user->email ?></td>
+			</tr>
+			<?php } ?>
+		</table>
+	</div>
+
+</div><!-- /.container -->
+
+<?php require_once('footer.phtml'); ?>
