@@ -36,6 +36,11 @@ class MY_Router extends CI_Router {
 			// Set the directory and remove it from the segment array
 			$this->set_directory($segments[0]);
 			$segments = array_slice($segments, 1);
+			while(count($segments) > 0 && is_dir(APPPATH.'controllers/'.$this->fetch_directory().$segments[0]))
+			{
+				$this->set_directory($segments[0]);
+				$segments = array_slice($segments, 1);
+			}
 
 			if (count($segments) > 0)
 			{
@@ -117,6 +122,11 @@ class MY_Router extends CI_Router {
 		}
 
 		return $this->method . self::METHOD_NAME_SUFFIX;
+	}
+
+	function set_directory($dir)
+	{
+		$this->directory .= str_replace(array('/', '.'), '', $dir).'/';
 	}
 
 }
