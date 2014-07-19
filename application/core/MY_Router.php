@@ -1,7 +1,7 @@
 <?php
 
 class MY_Router extends CI_Router {
-	const CONTROLLER_FILE_SUFFIX = '_controller';
+	const CONTROLLER_FILE_SUFFIX = 'Controller';
 	const METHOD_NAME_SUFFIX = 'Action';
 
 	public function __construct()
