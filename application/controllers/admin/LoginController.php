@@ -4,6 +4,7 @@ class LoginController extends Admin_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->library('form_validation');
 		$this->load->helper(array('form'));
 	}
 
@@ -21,19 +22,24 @@ class LoginController extends Admin_Controller {
 
 		if($this->input->post())
 		{
-			$username	= $this->input->post('username');
-			$password	= $this->input->post('password');
-			$login = $this->auth->login($username, $password);
-			if($login)
+			$this->form_validation->set_rules('username', 'lang:username', 'required');
+			$this->form_validation->set_rules('password', 'lang:password', 'required|sha1');
+
+			if($this->form_validation->run())
 			{
-				redirect(base_url($redirect));
-			}
-			else
-			{
-				//this adds the redirect back to flash data if they provide an incorrect credentials
-				$this->session->set_flashdata('redirect', $redirect);
-				$this->session->set_flashdata('error', lang('error_authentication_failed'));
-				redirect(base_url('/admin/login'));
+				$username	= $this->input->post('username');
+				$password	= $this->input->post('password');
+				$login = $this->auth->login($username, $password);
+				if($login)
+				{
+					redirect(base_url($redirect));
+				}
+				else
+				{
+					//this adds the redirect back to flash data if they provide an incorrect credentials
+					$this->session->set_flashdata('redirect', $redirect);
+					$this->session->set_flashdata('error', lang('error_authentication_failed'));
+				}
 			}
 		}
 		$this->load->view('login');

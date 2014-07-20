@@ -3,31 +3,32 @@
 <div class="container">
 
 	<div>
-		<h1>Add New User</h1>
+		<h1>Edit User</h1>
 		<?php echo validation_errors(); ?>
-		<form action="<?=base_url('/admin/user/new') ?>" method="post" class="form-horizontal" role="form">
+		<form method="post" class="form-horizontal" role="form">
+			<input type="hidden" name="id" value="<?=set_value('id', $id); ?>" />
 			<div class="form-group">
 				<label class="col-sm-2 control-label">UserName</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" placeholder="UserName" name="username" value="<?php echo set_value('username'); ?>" autofocus="autofocus" required="required" />
+					<input type="text" class="form-control" placeholder="UserName" name="username" value="<?=set_value('username', $username); ?>" autofocus="autofocus" required="required" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Email address</label>
 				<div class="col-sm-10">
-					<input type="email" class="form-control"placeholder="Enter email" name="email" value="<?php echo set_value('email'); ?>" required="required" />
+					<input type="email" class="form-control"placeholder="Enter email" name="email" value="<?=set_value('email', $email); ?>" required="required" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Password</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control" placeholder="Password" name="password" required="required" />
+					<input type="password" class="form-control" placeholder="Password" name="password" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Confirm Password</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" required="required" />
+					<input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" />
 				</div>
 			</div>
 

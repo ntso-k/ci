@@ -12,15 +12,29 @@
 		 $this->load->database();
 	 }
 
+	 function get($id)
+	 {
+		 $query = $this->db->get_where('user', array('id'=>$id));
+		 return $query->row();
+	 }
+
 	 function get_last_ten()
 	 {
 		 $query = $this->db->get('user', 10);
 		 return $query->result();
 	 }
 
-	 function insert()
+	 function save($user)
 	 {
-		 $this->db->insert('user', $this);
+		 if($user['id'])
+		 {
+			 $this->db->where('id', $user['id']);
+			 $this->db->update('user', $user);
+		 }
+		 else
+		 {
+		    $this->db->insert('user', $user);
+		 }
 	 }
 
 	 function get_by_username_password($username, $password)
