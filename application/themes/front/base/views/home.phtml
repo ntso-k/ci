@@ -1,12 +1,55 @@
 <?php require_once('header.phtml'); ?>
-	<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 <div class="container">
+<div class="text-center">
 
-	<div class="text-center">
-		<h1>Bootstrap starter template</h1>
-		<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-	</div>
-
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+	<style>
+	#sortable { list-style-type: none; margin: 0; padding: 0; width: 450px; }
+	#sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 100px; height: 90px; vertical-align: middle; text-align: center; }
+	</style>
+	<script>
+	$(function() {
+	$( "#sortable" ).sortable();
+	$( "#sortable" ).disableSelection();
+	});
+	</script>
+ 
+	<ul id="sortable" style="margin: 0 auto;">
+	  <li class="ui-state-default">
+		  <a>
+		    <img src='https://www.google.com/favicon.ico' height="32" width="32"/>
+		    <p>Google</p>
+		  </a>
+	  </li>
+	  <li class="ui-state-default">
+		  <a href="http://jenniferdewalt.com/silly_kitty.html" target="_blank">
+			  <img src='https://www.facebook.com/favicon.ico' height="32" width="32"/>
+			  <p>Facebook</p>
+		  </a>
+	  </li>
+	  <li class="ui-state-default">
+		  <a>
+			  <img src='https://www.twitter.com/favicon.ico' height="32" width="32"/>
+			  <p>Twitter</p>
+		  </a>
+	  </li>
+	  <li class="ui-state-default">
+		  <a>
+			  <img src='https://www.apple.com/favicon.ico'/>
+			  <p>Apple</p>
+		  </a>
+	  </li>
+	  <li class="ui-state-default">5</li>
+	  <li class="ui-state-default">6</li>
+	  <li class="ui-state-default">7</li>
+	  <li class="ui-state-default">8</li>
+	  <li class="ui-state-default">9</li>
+	  <li class="ui-state-default">10</li>
+	  <li class="ui-state-default">11</li>
+	  <li class="ui-state-default">12</li>
+	</ul>
+</div>
 </div><!-- /.container -->
 
 <?php require_once('footer.phtml'); ?>

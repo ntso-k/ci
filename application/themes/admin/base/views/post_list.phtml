@@ -1,0 +1,16 @@
+<?php require_once('header.phtml'); ?>
+
+<div class="container" style="max-width: 750px;">
+
+	<div>
+			<?php foreach($posts as $post){ ?>
+			<div>
+				<h3><?=anchor(base_url('/admin/post/'.$post->post_id),$post->title) ?></h3>
+				<p><?= character_limiter($post->text_content, 200) ?></p>
+			</div>
+			<?php } ?>
+	</div>
+
+</div><!-- /.container -->
+
+<?php require_once('footer.phtml'); ?>

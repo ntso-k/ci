@@ -44,7 +44,7 @@ class UserController extends Admin_Controller {
 		}
 	}
 
-	public function editAction($id)
+	public function editAction($user_id)
 	{
 		if($this->input->post())
 		{
@@ -58,7 +58,7 @@ class UserController extends Admin_Controller {
 
 			if ($this->form_validation->run())
 			{
-				$user['id'] = $this->input->post('id');
+				$user['user_id'] = $this->input->post('user_id');
 				$user['username'] = $this->input->post('username');
 				$user['email'] = $this->input->post('email');
 				if ($this->input->post('password') != '')
@@ -72,19 +72,16 @@ class UserController extends Admin_Controller {
 			}
 		}
 
-		$user = $this->user->get($id);
+		$user = $this->user->get($user_id);
 		//if the administrator does not exist, redirect them to the admin list with an error
 		if (!$user)
 		{
 			$this->session->set_flashdata('message', lang('user_not_found'));
 			redirect(base_url('/admin/user'));
 		}
-		$data['id'] = $user->id;
+		$data['user_id'] = $user->user_id;
 		$data['username'] = $user->username;
 		$data['email'] = $user->email;
 		$this->load->view('user_edit', $data);
 	}
 }
-
-/* End of file user.php */
-/* Location: ./application/controllers/admin/user.php */

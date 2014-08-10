@@ -1,20 +1,14 @@
 <?php
  class User extends CI_Model {
-	 public $id;
-	 public $username;
-	 public $password;
-	 public $email;
 
 	 function __construct()
 	 {
 		 parent::__construct();
-
-		 $this->load->database();
 	 }
 
 	 function get($id)
 	 {
-		 $query = $this->db->get_where('user', array('id'=>$id));
+		 $query = $this->db->get_where('user', array('user_id'=>$id));
 		 return $query->row();
 	 }
 
@@ -26,9 +20,9 @@
 
 	 function save($user)
 	 {
-		 if($user['id'])
+		 if($user['user_id'])
 		 {
-			 $this->db->where('id', $user['id']);
+			 $this->db->where('user_id', $user['user_id']);
 			 $this->db->update('user', $user);
 		 }
 		 else

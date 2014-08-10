@@ -1,0 +1,21 @@
+<?php require_once('header.phtml'); ?>
+
+<div class="container">
+
+	<div class="">
+		<table class="table">
+			<tr><th>ID</th><th>UserName</th><th>Email</th><th></th></tr>
+			<?php foreach($accounts as $account){ ?>
+			<tr>
+				<td><?=$account->account_id ?></td>
+				<td><?=$account->username ?></td>
+				<td><?=$account->email ?></td>
+				<td><?=anchor(base_url('/admin/account/edit/'.$account->account_id),'Edit') ?></td>
+			</tr>
+			<?php } ?>
+		</table>
+	</div>
+
+</div><!-- /.container -->
+
+<?php require_once('footer.phtml'); ?>

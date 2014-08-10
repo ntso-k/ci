@@ -8,7 +8,7 @@ class LogoutController extends Admin_Controller {
 
 	public function indexAction()
 	{
-		$this->auth->logout();
+		$this->auth->logout_admin();
 		redirect(base_url('/admin/login'));
 	}
 }

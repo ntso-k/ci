@@ -15,7 +15,7 @@ class LoginController extends Admin_Controller {
 		{
 			$redirect = '/admin';
 		}
-		if($this->auth->is_logged_in())
+		if($this->auth->is_admin_logged_in())
 		{
 			redirect(base_url($redirect));
 		}
@@ -29,7 +29,7 @@ class LoginController extends Admin_Controller {
 			{
 				$username	= $this->input->post('username');
 				$password	= $this->input->post('password');
-				$login = $this->auth->login($username, $password);
+				$login = $this->auth->login_admin($username, $password);
 				if($login)
 				{
 					redirect(base_url($redirect));

@@ -1,0 +1,22 @@
+<?php require_once('header.phtml'); ?>
+
+<div class="container">
+	<div><a href="<?=base_url('admin/webapp/edit')?>" class="btn btn-primary" role="button">+ Add</a></div>
+	<div class="">
+		<table class="table">
+			<tr><th>ID</th><th>Icon</th><th>Title</th><th>URL</th><th></th></tr>
+			<?php foreach($webApps as $webApp){ ?>
+			<tr>
+				<td><?=$webApp->web_app_id ?></td>
+				<td><img src="<?=$webApp->icon_uri ?>" /></td>
+				<td><?=$webApp->title ?></td>
+				<td><?=$webApp->url ?></td>
+				<td><?=anchor(base_url('/admin/webapp/edit/'.$webApp->web_app_id),'Edit') ?></td>
+			</tr>
+			<?php } ?>
+		</table>
+	</div>
+
+</div><!-- /.container -->
+
+<?php require_once('footer.phtml'); ?>

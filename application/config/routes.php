@@ -41,7 +41,10 @@
 $route['default_controller'] = "home";
 $route['404_override'] = '';
 
+//////////// Admin /////////////////
 $route['admin'] = "admin/dashboard";
+$route['admin/post/(:num)'] = "admin/post/view/$1";
+$route['webapp/(:any)/edit'] = "webapp/edit/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

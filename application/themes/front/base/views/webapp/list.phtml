@@ -1,0 +1,39 @@
+<?php require_once('/../header.phtml'); ?>
+
+<link href='<?= base_url("assets")?>/themes/front/base/webapp.css' rel="stylesheet" />
+
+<script>
+	$(function() {
+		$('.card .add-btn').click(function(){
+			$.post("<?= base_url("webapp/addToAccount")?>" + "/" + $(this).attr('data-app-id'), function(data){
+				alert(data);
+			});
+		});
+	});
+</script>
+<div class="container">
+
+	<div>
+		<ul class="list-inline clearfix">
+			<?php foreach($webApps as $webApp){ ?>
+			<li class="card">
+				<div class="app-logo">
+					<a href="<?=base_url('/webapp/'.($webApp->appname ? $webApp->appname : $webApp->web_app_id)) ?>">
+						<img src="<?=$webApp->icon_uri ?>" height="32" width="32"/>
+					</a>
+				</div>
+				<div class="app-desc">
+					<a class="app-name" href="<?=base_url('/webapp/'.($webApp->appname ? $webApp->appname : $webApp->web_app_id)) ?>"><?=$webApp->title ?></a>
+					
+					<a class="add-btn" data-app-id="<?=$webApp->web_app_id ?>" href="javascript:void(0);"><b>+</b> Add</a>
+					
+					<div class="app-meta"><?=$webApp->remarks ?></div>
+				</div>
+			</li>
+			<?php } ?>
+		</ul>
+	</div>
+
+</div><!-- /.container -->
+
+<?php require_once('/../footer.phtml'); ?>

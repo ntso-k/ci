@@ -1,0 +1,54 @@
+body {
+	background-color: #f4f4f4;
+}
+.card {
+    float: left;
+    width: 96%;
+    width: 298px\9;
+    margin: 0 2% 2%;
+    margin: 0 10px 20px 12px\9;
+    _margin: 0 12px 20px 6px;
+    position: relative;
+    box-shadow: 0 1px 2px #d6d6d6;
+    border-bottom: 1px solid #d4d4d4;
+    min-height: 48px;
+    background: #fff;
+    overflow: hidden;
+}
+.card .app-logo{
+float: left;
+padding: 0 1em 0 0;
+margin: 5px 0 0;
+}
+.card .app-desc .app-name {
+    display: block;
+    margin-top: 3px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #333;
+    font-size: 1em;
+}
+.card .app-desc .app-meta {
+    color: #999;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+}
+.card .app-desc .add-btn {
+    color: #999;
+    font-size: 14px;
+    white-space: nowrap;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+@media screen and (min-width: 920px){
+    .card {
+        width: 31%;
+        margin: 0 1.1666% 2.3332%;
+    }
+}

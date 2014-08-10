@@ -1,0 +1,26 @@
+<?php require_once('header.phtml'); ?>
+
+<link href='<?= base_url("assets")?>/themes/front/base/webapp.css' rel="stylesheet" />
+<div class="container">
+
+	<div>
+		<ul class="list-inline clearfix">
+			<?php foreach($apps as $app){ ?>
+			<li class="card">
+				<div class="app-logo">
+					<a href="<?=$app->url ?>" target="_blank">
+						<img src="<?=$app->icon_uri ?>" height="32" width="32"/>
+					</a>
+				</div>
+				<div class="app-desc">
+					<a class="app-name" href="<?=$app->url ?>" target="_blank"><?=$app->title ?></a>
+					<div class="app-meta"><?=$app->remarks ?></div>
+				</div>
+			</li>
+			<?php } ?>
+		</ul>
+	</div>
+
+</div><!-- /.container -->
+
+<?php require_once('footer.phtml'); ?>
