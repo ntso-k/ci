@@ -20,15 +20,16 @@
 
 	 function save($account)
 	 {
-		 if($account['account_id'])
+		 if(isset($account['account_id']))
 		 {
-			 $this->db->where('account_id', $account['user_id']);
-			 $this->db->update('account', $account);
+			$this->db->where('account_id', $account['user_id']);
+			$result = $this->db->update('account', $account);
 		 }
 		 else
 		 {
-		    $this->db->insert('account', $account);
+		    $result = $this->db->insert('account', $account);
 		 }
+		 return $result;
 	 }
 
 	 function get_by_username_password($username, $password)

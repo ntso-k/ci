@@ -37,9 +37,15 @@ class Auth
 		$this->CI->session->unset_userdata('admin');
 	}
 
+    function get_current_admin()
+    {
+        $admin = $this->CI->session->userdata('admin');
+        return $admin;
+    }
+
 	function is_admin_logged_in()
 	{
-		$admin = $this->CI->session->userdata('admin');
+		$admin =$this->get_current_admin();
 
 		if(!$admin)
 			return false;
@@ -77,7 +83,7 @@ class Auth
 
 	function is_account_logged_in()
 	{
-		$account = $this->CI->session->userdata('account');
+		$account = $this->get_account();
 
 		if(!$account)
 			return false;

@@ -4,7 +4,13 @@
 
 	<div class="text-center">
 		<h1>Login</h1>
-		<?php echo validation_errors(); ?>
+		<?php $error = validation_errors(); ?>
+		<?php if (!empty($error)): ?>
+			<div class="alert alert-danger">
+				<a class="close" data-dismiss="alert">×</a>
+				<?php echo $error; ?>
+			</div>
+		<?php endif; ?>
 		<form action="<?=$_SERVER['REQUEST_URI'] ?>" method="post" role="form" style="max-width: 400px; margin: 0px auto;">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="UserName" name="username" value="<?php echo set_value('username'); ?>" required="required" autofocus="autofocus" />

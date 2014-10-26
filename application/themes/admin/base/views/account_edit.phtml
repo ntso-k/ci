@@ -4,13 +4,6 @@
 
 	<div>
 		<h1>Edit Account</h1>
-		<?php $error = validation_errors(); ?>
-		<?php if (!empty($error)): ?>
-			<div class="alert alert-danger">
-				<a class="close" data-dismiss="alert">×</a>
-				<?php echo $error; ?>
-			</div>
-		<?php endif; ?>
 		<form method="post" class="form-horizontal" role="form">
 			<input type="hidden" name="account_id" value="<?=set_value('account_id', $account_id); ?>" />
 			<div class="form-group">

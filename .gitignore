@@ -1,4 +1,4 @@
 .idea
-/application/config/database.php
-
+.DS_Store
 application/config/database.php
+assets/captcha

@@ -1,5 +1,8 @@
-RewriteEngine on
-RewriteCond $1 !^(index\.php|user_guide|images|robots\.txt)
-RewriteCond $1 !(\.css|.js)$
-RewriteCond $1 !^(assets/)
-RewriteRule ^(.*)$ /index.php/$1 [L]
+
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	RewriteCond $1 !^(index\.php|user_guide|images|robots\.txt)
+	RewriteCond $1 !(\.css|.js)$
+	RewriteCond $1 !^(assets/)
+	RewriteRule ^(.*)$ /index.php/$1 [L]
+</IfModule>

@@ -49,3 +49,36 @@
 <script>
 	$('.navbar a[href="/<?=$this->uri->uri_string()?>"]').parent().addClass('active');
 </script>
+
+<?php
+//lets have the flashdata overright "$message" if it exists
+if($this->session->flashdata('message'))
+{
+	$message = $this->session->flashdata('message');
+}
+
+if($this->session->flashdata('error'))
+{
+	$error  = $this->session->flashdata('error');
+}
+
+if(function_exists('validation_errors') && validation_errors() != '')
+{
+	$error  = validation_errors();
+}
+?>
+</div>
+
+<?php if (!empty($message)): ?>
+	<div class="alert alert-success">
+		<a class="close" data-dismiss="alert">×</a>
+		<?php echo $message; ?>
+	</div>
+<?php endif; ?>
+
+<?php if (!empty($error)): ?>
+	<div class="alert alert-danger">
+		<a class="close" data-dismiss="alert">×</a>
+		<?php echo $error; ?>
+	</div>
+<?php endif; ?>

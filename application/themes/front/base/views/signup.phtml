@@ -2,21 +2,18 @@
 
 <div class="container">
 
-	<div>
-		<h1 class="text-center">Login</h1>
+	<div class="text-center">
+		<h1>Sign Up</h1>
 		<form action="<?=$_SERVER['REQUEST_URI'] ?>" method="post" role="form" style="max-width: 400px; margin: 0px auto;">
-			<div class="form-group">
+			<div class="form-group<?=(form_error('username')=='' ? '':' has-error')?>">
 				<input type="text" class="form-control" placeholder="UserName" name="username" value="<?php echo set_value('username'); ?>" required="required" />
 			</div>
-			<div class="form-group">
-				<input type="password" class="form-control" placeholder="Password" name="password" value="<?php echo set_value('password'); ?>" required="required" />
+			<div class="form-group<?=(form_error('email')=='' ? '':' has-error')?>">
+				<input type="text" class="form-control" placeholder="Email" name="email" value="<?php echo set_value('email'); ?>" required="required" />
 			</div>
-			<?php if(isset($cap)): ?>
-			<div class="form-group">
-				<div style="text-align: left;"><?php echo $cap['image']; ?></div>
-				<input type="text" class="form-control" placeholder="CAPTCHA" name="captcha" required="required" autocomplete="off" />
+			<div class="form-group<?=(form_error('password')=='' ? '':' has-error')?>">
+				<input type="password" class="form-control" placeholder="Password" name="password" required="required" />
 			</div>
-			<?php endif ?>
 			<button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
 		</form>
 

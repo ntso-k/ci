@@ -19,7 +19,7 @@ class UserController extends Admin_Controller {
 	public function newAction()
 	{
 		if($this->input->post()){
-			$this->form_validation->set_rules('username', 'username', 'required');
+			$this->form_validation->set_rules('username', 'username', 'required|is_unique[user.username]');
 			$this->form_validation->set_rules('email', 'email');
 			//if this is a new account require a password, or if they have entered either a password or a password confirmation
 			if ($this->input->post('password') != '' || $this->input->post('confirm_password') != '')
