@@ -5,11 +5,19 @@
 <script>
 	$(function() {
 		$('.card .add-btn').click(function(){
-			$.post("<?= base_url("webapp/addToAccount")?>" + "/" + $(this).attr('data-app-id'), function(data){
-				alert(data);
-			});
+            $("#add_app_modal .modal-body").html('...');
+            $("#add_app_modal").modal('show');
+            $("#add_app_modal .modal-body").load("/board/contextList/" + $(this).attr('data-app-id'));
 		});
 	});
+
+    function add_app_to_board(web_app_id,board_id) {
+        $.post("<?= base_url("webapp/addToAccount")?>", {web_app_id: web_app_id, board_id: board_id}, function(data){
+            $("#add_app_modal").modal('toggle')
+            obj = eval("(" + data + ")");
+            alert(obj.message);
+        });
+    }
 </script>
 <div class="container">
 
@@ -35,5 +43,20 @@
 	</div>
 
 </div><!-- /.container -->
+
+<!-- modal -->
+<div id="add_app_modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Pick a board</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php require_once('/../footer.phtml'); ?>

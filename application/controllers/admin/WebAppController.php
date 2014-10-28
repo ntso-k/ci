@@ -58,7 +58,8 @@ class WebAppController extends Admin_Controller {
 				$webApp['appname'] = $this->input->post('appname');
 				$webApp['remarks'] = $this->input->post('remarks');
 				$webApp['description'] = $this->input->post('description');
-				$webApp['icon_uri'] = $webApp['url'] . '/favicon.ico';
+				$webApp['icon_uri'] = $this->input->post('icon_uri');
+                $webApp['icon_uri'] = empty($webApp['icon_uri']) ? $webApp['url'] . '/favicon.ico' : $webApp['icon_uri'];
 				$webApp['create_date'] = time();
 
 				$id = $this->WebApp->save($webApp);

@@ -18,6 +18,17 @@
 		 return $query->row();
 	 }
 
+     function get_by_board_id($board_id)
+     {
+         $this->db->select('web_app.*');
+         $this->db->from('web_app');
+         $this->db->join('board_app', 'board_app.web_app_id = web_app.web_app_id');
+         $this->db->where('board_app.board_id', $board_id);
+         $result = $this->db->get()->result();
+
+         return $result;
+     }
+
 	 function get_last_ten()
 	 {
 		 $query = $this->db->get('web_app', 10);
@@ -39,12 +50,14 @@
 		 }
 	 }
 	 
-	 function add_to_account($account_id, $app_id)
+	 function add_to_board($board_id, $web_app_id)
 	 {
-		 $result = $this->db->get_where('account_app', array('account_id'=>$account_id, 'app_id'=>$app_id))->row();
+		 $result = $this->db->get_where('board_app', array('board_id'=>$board_id, 'web_app_id'=>$web_app_id))->row();
 		 if(empty($result))
 		 {
-			$this->db->insert('account_app', array('account_id'=>$account_id, 'app_id'=>$app_id, 'add_date'=>time()));
+			$this->db->insert('board_app', array('board_id'=>$board_id, 'web_app_id'=>$web_app_id, 'created'=>time()));
 		 }
+
+         return true;
 	 }
  }

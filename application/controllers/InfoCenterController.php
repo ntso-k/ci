@@ -15,16 +15,21 @@ class InfoCenterController extends Front_Controller {
 
 	public function indexAction($id=null)
 	{
-		$this->load->model('Account');
+		$this->load->model(array('Account', 'WebApp'));
 		
 		$apps = array();
 		
 		if(!isset($id) && $this->auth->is_account_logged_in())
 		{
-			$id = $this->auth->get_account()->account_id;
+			$account_id = $this->auth->get_account()->account_id;
 		}
-		$apps = $this->Account->get_apps($id);
+
+		$boards = $this->Account->get_boards($account_id);
+        foreach($boards as $key => $board)
+        {
+            $boards[$key]->apps = $this->WebApp->get_by_board_id($board->board_id);
+        }
 		
-		$this->load->view('infocenter', array('apps'=>$apps));;
+		$this->load->view('infocenter', array('boards'=>$boards));;
 	}
 }

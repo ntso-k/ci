@@ -7,7 +7,7 @@ class WebAppController extends Front_Controller {
 
 		$this->load->library('form_validation');
 		$this->load->helper(array('form', 'text'));
-		$this->load->model('WebApp');
+		$this->load->model(array('WebApp', 'Board'));
 	}
 
 	public function indexAction()
@@ -41,23 +41,29 @@ class WebAppController extends Front_Controller {
 		show_404();
 	}
 	
-	public function addToAccountAction($key)
+	public function addToAccountAction()
 	{
-		if($this->auth->is_account_logged_in() == false)
+        $account = $this->auth->get_account();
+		if(!$account)
 		{
-			echo false;
+			echo json_encode(array('result' => 1, 'message'=>'Please login first!'));
 			return;
 		}
-		$webApp = $this->WebApp->get($key);
+		$webApp = $this->WebApp->get($_POST['web_app_id']);
 		if(empty($webApp))
 		{
-			echo 'App not exist.';
+			echo json_encode(array('result' => 2, 'message'=>'App not exist.'));
 			return;
 		}
-		
-		$account = $this->auth->get_account();
-		$result = $this->WebApp->add_to_account($account->account_id, $webApp->web_app_id);
-		echo $result;
+        $board = $this->Board->get($_POST['board_id']);
+        if(empty($board) || $board->account_id != $account->account_id)
+        {
+            echo json_encode(array('result' => 3, 'message'=>'Board not exist'));
+            return;
+        }
+
+		$result = $this->WebApp->add_to_board($board->board_id, $webApp->web_app_id);
+        echo json_encode(array('result' => 0, 'message'=>'Added successfully!'));
 	}
 	
 	public function _remap($method, $params = array())

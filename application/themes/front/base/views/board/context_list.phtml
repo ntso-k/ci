@@ -1,0 +1,7 @@
+<div class="list-group">
+    <?php foreach($boards as $board): ?>
+    <a href="javascript:void(0);" onclick="add_app_to_board(<?=$web_app_id ?>, <?=$board->board_id ?>)" class="list-group-item">
+        <?=$board->title ?>
+    </a>
+    <?php endforeach; ?>
+</div>

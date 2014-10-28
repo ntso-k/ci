@@ -3,9 +3,11 @@
 <link href='<?= base_url("assets")?>/themes/front/base/webapp.css' rel="stylesheet" />
 <div class="container">
 
+<?php foreach($boards as $board){ ?>
+    <div><h4><?=$board->title ?></h4></div>
 	<div>
 		<ul class="list-inline clearfix">
-			<?php foreach($apps as $app){ ?>
+			<?php foreach($board->apps as $app){ ?>
 			<li class="card">
 				<div class="app-logo">
 					<a href="<?=$app->url ?>" target="_blank">
@@ -20,6 +22,7 @@
 			<?php } ?>
 		</ul>
 	</div>
+<?php } ?>
 
 </div><!-- /.container -->
 
