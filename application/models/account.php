@@ -49,4 +49,21 @@
 		 
 		 return $result;
 	 }
+
+	 function get_all_web_app_ids($account_id)
+	 {
+		 $this->db->select('board_app.web_app_id');
+		 $this->db->from('board_app');
+		 $this->db->join('board', 'board.board_id = board_app.board_id');
+		 $this->db->where('board.account_id', $account_id);
+		 $result = $this->db->get()->result();
+
+		 $arr = array();
+
+		 foreach($result as $r){
+			 $arr[] = $r->web_app_id;
+		 }
+
+		 return $arr;
+	 }
  }

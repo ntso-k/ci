@@ -7,11 +7,17 @@ class WebAppController extends Front_Controller {
 
 		$this->load->library('form_validation');
 		$this->load->helper(array('form', 'text'));
-		$this->load->model(array('WebApp', 'Board'));
+		$this->load->model(array('WebApp', 'Account', 'Board'));
 	}
 
 	public function indexAction()
 	{
+		$added_ids = array();
+		if($this->auth->is_account_logged_in())
+		{
+			$added_ids = $this->Account->get_all_web_app_ids($this->auth->get_account()->account_id);
+		}
+		$data['added_ids'] = $added_ids;
 		$data['webApps'] = $this->WebApp->get_last_ten();
 		$this->load->view('webapp/list', $data);
 	}

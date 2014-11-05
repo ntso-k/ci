@@ -60,4 +60,22 @@
 
          return true;
 	 }
+
+	 function get_board_ids($account_id, $app_id)
+	 {
+		 $this->db->select('board.board_id');
+		 $this->db->from('board_app');
+		 $this->db->join('board', 'board.board_id = board_app.board_id');
+		 $this->db->where('board.account_id', $account_id);
+		 $this->db->where('board_app.web_app_id', $app_id);
+		 $result = $this->db->get()->result();
+
+		 $arr = array();
+
+		 foreach($result as $r){
+			 $arr[] = $r->board_id;
+		 }
+
+		 return $arr;
+	 }
  }

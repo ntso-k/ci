@@ -1,19 +1,24 @@
 <?php require_once('/../header.phtml'); ?>
 
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href='<?= base_url("assets")?>/themes/front/base/webapp.css' rel="stylesheet" />
 
 <script>
 	$(function() {
 		$('.card .add-btn').click(function(){
-            $("#add_app_modal .modal-body").html('...');
-            $("#add_app_modal").modal('show');
-            $("#add_app_modal .modal-body").load("/board/contextList/" + $(this).attr('data-app-id'));
+			<?php if(isset($_GET['bid'])){ ?>
+			add_app_to_board($(this).attr('data-app-id'), <?=$_GET['bid'] ?>);
+			<?php }else{ ?>
+			$("#add_app_modal .modal-body").html('...');
+			$("#add_app_modal").modal('show');
+			$("#add_app_modal .modal-body").load("/board/contextList/" + $(this).attr('data-app-id') + "?timestamp=" + (new Date()).getTime());
+			<?php } ?>
 		});
 	});
 
     function add_app_to_board(web_app_id,board_id) {
         $.post("<?= base_url("webapp/addToAccount")?>", {web_app_id: web_app_id, board_id: board_id}, function(data){
-            $("#add_app_modal").modal('toggle')
+            $("#add_app_modal").modal('hide');
             obj = eval("(" + data + ")");
             alert(obj.message);
         });
@@ -32,9 +37,12 @@
 				</div>
 				<div class="app-desc">
 					<a class="app-name" href="<?=base_url('/webapp/'.($webApp->appname ? $webApp->appname : $webApp->web_app_id)) ?>"><?=$webApp->title ?></a>
-					
-					<a class="add-btn" data-app-id="<?=$webApp->web_app_id ?>" href="javascript:void(0);"><b>+</b> Add</a>
-					
+
+					<?php if(in_array($webApp->web_app_id, $added_ids)){ ?>
+						<a class="add-btn btn-warning" data-app-id="<?=$webApp->web_app_id ?>" href="javascript:void(0);"><i class="fa fa-check"></i>Added</a>
+					<?php }else{ ?>
+						<a class="add-btn btn-success" data-app-id="<?=$webApp->web_app_id ?>" href="javascript:void(0);"><i class="fa fa-plus"></i> Add</a>
+					<?php }?>
 					<div class="app-meta"><?=$webApp->remarks ?></div>
 				</div>
 			</li>

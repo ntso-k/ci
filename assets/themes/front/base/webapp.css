@@ -28,6 +28,7 @@ margin: 5px 0 0;
     overflow: hidden;
     color: #333;
     font-size: 1em;
+    width: 245px;
 }
 .card .app-desc .app-meta {
     color: #999;
@@ -37,11 +38,13 @@ margin: 5px 0 0;
     text-overflow: ellipsis;
     margin-top: 5px;
 }
-.card .app-desc .add-btn {
-    color: #999;
+.card .app-desc .add-btn, .card .app-desc .added-btn {
     font-size: 14px;
     white-space: nowrap;
+    text-decoration: none;
+    text-align: center;
 	position: absolute;
+    width: 60px;
 	top: 5px;
 	right: 5px;
 }
